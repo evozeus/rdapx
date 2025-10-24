@@ -2,7 +2,7 @@
 name = "rdapx"
 version = "0.1.0"
 edition = "2021"
-authors = ["Evozeus <43null_hatches@icloud.com" ]
+authors = ["Evozeus <43null_hatches@icloud.com>"]
 description = "A fast, modern RDAP client written in Rust — bulk lookups, caching, JSON/NDJSON output, and colorized tables."
 repository = "https://github.com/evozeus/rdapx"
 license = "MIT"
