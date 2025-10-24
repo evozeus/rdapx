@@ -10,6 +10,9 @@ tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 colored = "2.1"
+directories = "5"       # cross-platform cache dir
+blake3 = "1.5"          # fast hash for cache keys
+futures = "0.3"         # for buffered concurrency in bulk mode
 
 [dev-dependencies]
 assert_cmd = "2"
