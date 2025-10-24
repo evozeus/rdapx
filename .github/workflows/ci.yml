@@ -1,4 +1,4 @@
-name: CI
+name: Rust CI
 
 on:
   push:
@@ -6,27 +6,53 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+
 jobs:
-  build:
+  ci:
+    name: fmt + clippy + test + build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Rust (with rustfmt + clippy)
+      - name: Install Rust (stable) + components
         uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt, clippy
 
-      - name: Cache cargo build
+      - name: Cache cargo
         uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: |
+            . -> target
 
-      - name: Run fmt
-        run: cargo fmt --all -- --check
+      - name: Show workspace files (debug)
+        run: |
+          pwd
+          ls -la
+          test -f Cargo.toml && echo "Found Cargo.toml at repo root ✔"
 
-      - name: Run clippy
-        run: cargo clippy --all-targets -- -D warnings
+      - name: Format check
+        run: cargo fmt -- --check
+
+      - name: Clippy (deny warnings)
+        run: cargo clippy -- -D warnings
 
       - name: Run tests
-        run: cargo test --all --verbose
+        run: cargo test --all --quiet
+
+      - name: Build release binary
+        run: cargo build --release
+
+      - name: Upload artifact (Linux x86_64)
+        uses: actions/upload-artifact@v4
+        with:
+          name: rdapx-linux-x86_64
+          path: target/release/rdapx
+          if-no-files-found: error

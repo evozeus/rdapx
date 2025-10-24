@@ -1,0 +1,68 @@
+name: "🐞 Bug report"
+description: Report a reproducible bug in rdapx
+title: "[bug] <short summary>"
+labels: ["bug"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing a bug! Please include clear steps to reproduce.
+
+  - type: input
+    id: version
+    attributes:
+      label: rdapx version
+      description: Output of `rdapx --version`
+      placeholder: "rdapx 0.1.0 (commit abc123)"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: OS / CPU
+      placeholder: "Ubuntu 24.04 x86_64"
+    validations:
+      required: true
+
+  - type: textarea
+    id: cmd
+    attributes:
+      label: Command that fails
+      description: Exact command you ran (redact secrets)
+      render: shell
+      placeholder: "rdapx --format table get 1.1.1.1"
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior / error
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal reproduction
+      description: Smallest possible input (file, flags, etc.)
+      render: text
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I’m using the latest commit or release.
+          required: true
+        - label: I searched existing issues and PRs.
+          required: true

@@ -1,0 +1,42 @@
+name: "✨ Feature request"
+description: Propose a new feature or improvement
+title: "[feat] <short summary>"
+labels: ["enhancement"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: "Tell us the problem, your use-case, and the ideal UX."
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      placeholder: "Bulk lookups are slow over high-latency links…"
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      placeholder: "Add --concurrency and streaming NDJSON output…"
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Area
+      options:
+        - CLI / UX
+        - Performance
+        - Output / formatting
+        - Protocol / correctness
+        - CI / packaging
+        - Other
