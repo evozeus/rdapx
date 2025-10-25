@@ -105,4 +105,4 @@ MIT © 2025 Evozeus
 ## 🌐 Links
 
 GitHub: https://github.com/evozeus/rdapx  
-Crates.io (coming soon): https://crates.io/crates/rdapx  
+Crates.io: https://crates.io/crates/rdapx  
